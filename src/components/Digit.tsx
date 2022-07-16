@@ -86,14 +86,16 @@ const digits: Record<number, string> = {
 
 export function Digit({
   digit,
+  isActive
 }: {
   digit: DigitNum;
+  isActive: boolean;
 }) {
   return (
     <WatchDrawer
       height={6}
       width={4}
-      strImage={digits[digit]}
+      strImage={isActive ? digits[digit] : ''}
     />
   );
 }
