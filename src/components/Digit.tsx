@@ -61,10 +61,10 @@ const digits: Record<number, string> = {
   7: `
 ╔══╗
 ╚═╗║
-  ║║
-  ║║
-  ║║
-  ╚╝  
+ ╔╝║
+ ║╔╝ 
+ ║║
+ ╚╝  
 `,
   8: `
 ╔══╗
@@ -95,7 +95,8 @@ export function Digit({
     <WatchDrawer
       height={6}
       width={4}
-      strImage={isActive ? digits[digit] : ''}
+      strImage={digits[digit]}
+      isActive={isActive}
     />
   );
 }

@@ -13,13 +13,9 @@ export function DigitalWatch() {
   useEffect(() => {
     setTimeout(() => {
       setIsVisible(!isVisible);
-    }, isVisible ? 2000 : 1000);
-  }, [isVisible]);
-  useEffect(() => {
-    setTimeout(() => {
       setDigits(getDigits());
-    }, 3000);
-  }, [digits]);
+    }, 5000);
+  }, [isVisible]);
 
   return (
     <Root>

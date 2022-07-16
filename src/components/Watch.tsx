@@ -21,12 +21,12 @@ const MiddleDot = styled.div`
 `;
 
 
-export function Watch({ h, m }: { h?: number; m?: number }) {
+export function Watch({ h, m, isActive }: { h?: number; m?: number, isActive?: boolean }) {
   return (
     <Root>
       <MiddleDot />
-      {h != null && <Arrow deg={(360 / 12) * h} />}
-      {m != null && <Arrow deg={(360 / 60) * m} />}
+      {h != null && <Arrow deg={(360 / 12) * h} isActive={isActive} duration={3000} />}
+      {m != null && <Arrow deg={(360 / 60) * m} isActive={isActive} duration={2000} />}
     </Root>
   );
 }

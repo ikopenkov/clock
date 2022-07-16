@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useRef, useState } from "react";
-import { animated, SpringValue, useSpring } from "react-spring";
+import { useCallback, useEffect } from "react";
+import { animated, useSpring } from "react-spring";
 import styled from "styled-components";
 import { arrowHeight, arrowWidth, watchDiameter } from "../constants";
 
@@ -12,11 +12,23 @@ const SArrow = styled(animated.div)`
   top: ${(watchDiameter - arrowHeight) / 2}px;
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
 `;
-export function Arrow({ deg }: { deg: number }) {
-  const [style, animate] = useSpring(() => ({ rotateZ: 0, config:{duration: 1000} }));
-  useEffect(() => {
+const defaultDuration = 2000;
+export function Arrow({
+  deg,
+  isActive,
+  duration = defaultDuration,
+}: {
+  deg: number;
+  isActive?: boolean;
+  duration?: number;
+}) {
+  const [style, animate] = useSpring(() => ({
+    rotateZ: 0,
+    config: { duration: duration },
+  }));
+  const rotate = useCallback(() => {
     const currentDeg = style.rotateZ.get();
-    if (currentDeg > deg) {
+    if (deg <= currentDeg) {
       animate({
         rotateZ: deg + 360,
         immediate: false,
@@ -29,9 +41,9 @@ export function Arrow({ deg }: { deg: number }) {
     }
   }, [animate, deg, style.rotateZ]);
 
-  return (
-    <SArrow
-      style={style}
-    />
-  );
+  useEffect(() => {
+    rotate();
+  }, [rotate, isActive]);
+
+  return <SArrow style={style} />;
 }

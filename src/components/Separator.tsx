@@ -15,7 +15,8 @@ export function Separator({isActive}: {isActive?: boolean}) {
     <WatchDrawer
       height={6}
       width={2}
-      strImage={isActive ? image : ''}
+      strImage={image}
+      isActive={isActive}
     />
   );
 }

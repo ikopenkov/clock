@@ -23,11 +23,13 @@ export function WatchDrawer({
   height,
   strImage,
   charToTime = CharToTime,
+  isActive,
 }: {
   width: number;
   height: number;
   strImage: string;
   charToTime?: Record<string, [number, number]>;
+  isActive?: boolean;
 }) {
   const rows = strImage.split("\n").slice(1, -1);
   while (rows.length < height) {
@@ -45,7 +47,7 @@ export function WatchDrawer({
     <Root width={width} height={height}>
       {matrix.map((row, rowIdx) =>
         row.map(([h, m], colIdx) => (
-          <Watch h={h} m={m} key={`${rowIdx} ${colIdx}`} />
+          <Watch h={h} m={m} key={`${rowIdx} ${colIdx}`} isActive={isActive} />
         ))
       )}
     </Root>
