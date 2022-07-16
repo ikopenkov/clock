@@ -12,24 +12,25 @@ const Root = styled.div`
   place-items: center;
 `;
 
-const arrowHeight = r / 10;
+const arrowWidth = r / 10;
+const arrowHeight = d * 0.9;
 
 const MiddleDot = styled.div`
-  width: ${arrowHeight}px;
-  height: ${arrowHeight}px;
-  border-radius: ${arrowHeight}px;
+  width: ${arrowWidth}px;
+  height: ${arrowWidth}px;
+  border-radius: ${arrowWidth}px;
   background-color: #000;
 `;
 
 const SArrow = styled.div`
-  height: ${d}px;
-  width: ${arrowHeight}px;
+  height: ${arrowHeight}px;
+  width: ${arrowWidth}px;
   background-color: #000;
   position: absolute;
-  left: calc(50% - ${arrowHeight / 2}px);
-  top: 0;
+  left: calc(50% - ${arrowWidth / 2}px);
+  top: ${(d - arrowHeight) / 2}px;
   clip-path: polygon(0 0, 100% 0, 100% 50%, 0 50%);
-  transition: transform 1s ease-in-out;
+  transition: transform 0.5s ease-in-out;
 `;
 
 function Arrow({ deg }: { deg: number }) {
